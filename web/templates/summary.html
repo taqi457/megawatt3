@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block heading %} Summary {% endblock %}
+
+{% block content %}
+    <a href="/summary"><button type="button" class="btn btn-primary active">Sum</button></a>
+    <a href="/summary-average"><button type="button" class="btn btn-primary">Average</button></a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td><strong>Site</strong></td>
+                <td><strong>A Value</strong></td><td><strong>B Value</strong></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Demo Site</td>
+                <td>52.00</td>
+                <td>196.00</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
