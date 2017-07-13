@@ -15,11 +15,13 @@
         </thead>
 
         <tbody>
+        {% for s in summary_data %}
             <tr>
-                <td>Demo Site</td>
-                <td>52.00</td>
-                <td>196.00</td>
+                <td>{{s.name}}</td>
+                <td>{{s.a_summary|floatformat:"2"}}</td>
+                <td>{{s.b_summary|floatformat:"2"}}</td>
             </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

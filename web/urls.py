@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from web.views import sites, summary
 
+
 urlpatterns = [
 
     # SITES VIEWS
@@ -24,7 +25,7 @@ urlpatterns = [
     url(r'^sites', sites.SitesView.as_view()),
 
     # SUMMARY VIEWS
-    url(r'^summary', summary.SummaryView.as_view()),
     url(r'^summary-average', summary.SummaryAverageView.as_view()),
+    url(r'^summary', summary.SummaryView.as_view()),
 
 ]

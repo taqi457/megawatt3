@@ -5,7 +5,9 @@
 {% block content %}
 
 <ul class="list-group">
-    <li class="list-group-item"><a href="/sites/1">Demo Site</a></li>
+{% for site in all_sites %}
+    <li class="list-group-item"><a href="/sites/{{site.id}}">{{site.name}}</a></li>
+{% endfor %}
 </ul>
 
 {% endblock %}
