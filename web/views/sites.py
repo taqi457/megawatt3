@@ -1,5 +1,6 @@
 from django.views.generic import ListView
 from web.models import *
+from django.http import Http404
 
 
 class SitesView(ListView):
@@ -18,5 +19,8 @@ class SitesDetailView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(SitesDetailView, self).get_context_data(**kwargs)
-        context['site_name'] = Site.objects.get(id=self.kwargs['site_id']).name
+        try:
+            context['site_name'] = Site.objects.get(id=self.kwargs['site_id']).name
+        except Site.DoesNotExist:
+            raise Http404("No Site with this id available")
         return context

@@ -74,19 +74,35 @@ class StartWithFilterTest(TestCase):
 class AllViewsTest(TestCase):
 
     def test_site_page_no_sites(self):
+        """
+            Should give a message if there is no Site in db
+        """
         response = self.client.get(reverse('sites'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No sites are available")
         self.assertQuerysetEqual(response.context['all_sites'], [])
 
     def test_site_page_with_sites(self):
+        """
+            When a site is available its name should be in the content
+        """
         s = makeSite()
         response = self.client.get(reverse('sites'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, s.name)
         self.assertQuerysetEqual(response.context['all_sites'], ['<Site: Site object>'])
 
+    def test_site_detail_page_with_wrong_id(self):
+        """
+            Throw 404 if someone hits an site_id not created yet
+        """
+        response = self.client.get(reverse('site_detail', args=(1, )))
+        self.assertEqual(response.status_code, 404)
+
     def test_site_detail_page_with_no_data(self):
+        """
+           Show message if the site exists but it has no details
+        """
         s = makeSite()
         response = self.client.get(reverse('site_detail', args=(s.id, )))
         self.assertEqual(response.status_code, 200)
@@ -94,6 +110,10 @@ class AllViewsTest(TestCase):
         self.assertQuerysetEqual(response.context['site_details'], [])
 
     def test_site_detail_page_with_data(self):
+        """
+            When a site and its details are available, it should be contained the
+            a_value and b_value of the site with in the response body
+        """
         s = makeSite()
         sd = makeSiteDetail(s.id)
         response = self.client.get(reverse('site_detail', args=(s.id,)))
@@ -103,12 +123,19 @@ class AllViewsTest(TestCase):
         self.assertQuerysetEqual(response.context['site_details'], ['<SiteDetail: SiteDetail object>'])
 
     def test_summary_page_with_no_data(self):
+        """
+            When no site is available, it should show "no data" message
+        """
         response = self.client.get(reverse('summary'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No data available")
         self.assertQuerysetEqual(response.context['summary_data'], [])
 
     def test_summary_page_with_data(self):
+        """
+            When a site and its details are available, it should be contained the
+            sum of a_value and b_value of the site with in the response body
+        """
         s = makeSite()
         sd = makeSiteDetail(s.id)
         sd_two = makeSiteDetail(s.id)
@@ -122,12 +149,19 @@ class AllViewsTest(TestCase):
                                  [u"{'name': u'%s', 'b_summary': %s.0, 'a_summary': %s.0}" % (s.name, b_sum, a_sum)])
 
     def test_summary_average_page_with_no_data(self):
+        """
+            When a site is not available, it should be give a "no data' message
+        """
         response = self.client.get(reverse('summary_average'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No data available")
         self.assertQuerysetEqual(response.context['summary_data'], [])
 
     def test_summary_average_page_with_data(self):
+        """
+            When a site and its details are available, it should be contained the
+            average of a_value and b_value of the site with in the response body
+        """
         s = makeSite()
         sd = makeSiteDetail(s.id)
         sd_two = makeSiteDetail(s.id)
