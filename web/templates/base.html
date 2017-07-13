@@ -1,3 +1,5 @@
+{% load custom_filters %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +16,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/sites">Sites</a></li>
-            <li><a href="/summary">Summary</a></li>
+            <li {% if request.path|startswith:'/sites' %}class="active"{% endif %}>
+              <a href="/sites">Sites</a>
+              </li>
+            <li {% if request.path|startswith:'/summary' or request.path == '/summary-average' %}class="active"{% endif %}>
+                <a href="/summary">Summary</a>
+            </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -30,6 +36,5 @@
         {% endblock %}
     </main>
 </body>
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>

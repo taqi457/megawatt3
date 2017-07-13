@@ -7,8 +7,8 @@
     {% for sd in summary_data %}
             <tr>
                 <td>{{sd.name}}</td>
-                <td>{{sd.a_summary}}</td>
-                <td>{{sd.b_summary}}</td>
+                <td>{{sd.a_summary|floatformat:"2"}}</td>
+                <td>{{sd.b_summary|floatformat:"2"}}</td>
             </tr>
     {% endfor %}
 

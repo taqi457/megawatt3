@@ -9,8 +9,8 @@
     {% for sd in site_details %}
             <tr>
                 <td>{{sd.detail_date}}</td>
-                <td>{{sd.a_value}}</td>
-                <td>{{sd.b_value}}</td>
+                <td>{{sd.a_value|floatformat:"2"}}</td>
+                <td>{{sd.b_value|floatformat:"2"}}</td>
             </tr>
     {% endfor %}
 
