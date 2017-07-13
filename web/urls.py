@@ -20,12 +20,11 @@ from web.views import sites, summary
 urlpatterns = [
 
     # SITES VIEWS
-    url(r'^$', sites.SitesView.as_view()),
-    url(r'^sites/(?P<site_id>\d+)', sites.SitesDetailView.as_view()),
-    url(r'^sites', sites.SitesView.as_view()),
+    url(r'^sites/(?P<site_id>\d+)', sites.SitesDetailView.as_view(), name="site_detail"),
+    url(r'^(sites)?$', sites.SitesView.as_view(), name="sites"),
 
     # SUMMARY VIEWS
-    url(r'^summary-average', summary.SummaryAverageView.as_view()),
-    url(r'^summary', summary.SummaryView.as_view()),
+    url(r'^summary-average', summary.SummaryAverageView.as_view(), name="summary_average"),
+    url(r'^summary', summary.SummaryView.as_view(), name="summary"),
 
 ]

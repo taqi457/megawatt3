@@ -12,6 +12,8 @@
                 <td>{{sd.a_value|floatformat:"2"}}</td>
                 <td>{{sd.b_value|floatformat:"2"}}</td>
             </tr>
+            {% empty %}
+            <p>No data available</p>
     {% endfor %}
 
 {% endblock %}

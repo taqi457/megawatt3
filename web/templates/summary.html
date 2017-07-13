@@ -10,6 +10,8 @@
                 <td>{{sd.a_summary|floatformat:"2"}}</td>
                 <td>{{sd.b_summary|floatformat:"2"}}</td>
             </tr>
+            {% empty %}
+            <p>No data available</p>
     {% endfor %}
 
 {% endblock %}

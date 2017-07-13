@@ -22,15 +22,15 @@ class TimeStamped(models.Model):
 
 class Site(TimeStamped):
 
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=30, unique=True, blank=False)
 
 
 class SiteDetail(TimeStamped):
 
     site = models.ForeignKey(Site, default=None, on_delete=models.CASCADE)
-    detail_date = models.DateField()
-    a_value = models.FloatField()
-    b_value = models.FloatField()
+    detail_date = models.DateField(null=False)
+    a_value = models.FloatField(null=False)
+    b_value = models.FloatField(null=False)
 
     class Meta:
         ordering = ('detail_date', )

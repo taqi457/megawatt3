@@ -6,6 +6,7 @@
 
 {% for site in all_sites %}
     <li class="list-group-item"><a href="/sites/{{site.id}}">{{site.name}}</a></li>
+    {% empty %}
+    <p>No sites are available</p>
 {% endfor %}
-
 {% endblock %}
