@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% block buttons %}
+<a href="/summary"><button type="button" class="btn btn-primary active">Sum</button></a>
+<a href="/summary-average"><button type="button" class="btn btn-primary active">Average</button></a>
+{% endblock %}
+<table class="table">
+    <thead>
+        <tr>
+            <td><strong>Site</strong></td>
+            <td><strong>A Value</strong></td>
+            <td><strong>B Value</strong></td>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% block table_body %}
+        {% endblock %}
+    </tbody>
+</table>
+
+{% endblock %}

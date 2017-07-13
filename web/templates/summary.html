@@ -1,27 +1,15 @@
-{% extends "base.html" %}
+{% extends 'table.html' %}
 
 {% block heading %} Summary {% endblock %}
 
-{% block content %}
-    <a href="/summary"><button type="button" class="btn btn-primary active">Sum</button></a>
-    <a href="/summary-average"><button type="button" class="btn btn-primary">Average</button></a>
+{% block table_body %}
 
-    <table class="table">
-        <thead>
+    {% for sd in summary_data %}
             <tr>
-                <td><strong>Site</strong></td>
-                <td><strong>A Value</strong></td><td><strong>B Value</strong></td>
+                <td>{{sd.name}}</td>
+                <td>{{sd.a_summary}}</td>
+                <td>{{sd.b_summary}}</td>
             </tr>
-        </thead>
+    {% endfor %}
 
-        <tbody>
-        {% for s in summary_data %}
-            <tr>
-                <td>{{s.name}}</td>
-                <td>{{s.a_summary|floatformat:"2"}}</td>
-                <td>{{s.b_summary|floatformat:"2"}}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 {% endblock %}

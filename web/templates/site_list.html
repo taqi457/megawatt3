@@ -1,13 +1,11 @@
-{% extends "base.html" %}
+{% extends "pills.html" %}
 
 {% block heading %} Sites {% endblock %}
 
-{% block content %}
+{% block pills %}
 
-<ul class="list-group">
 {% for site in all_sites %}
     <li class="list-group-item"><a href="/sites/{{site.id}}">{{site.name}}</a></li>
 {% endfor %}
-</ul>
 
 {% endblock %}

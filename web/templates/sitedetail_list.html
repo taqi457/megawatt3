@@ -1,27 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'table.html' %}
 
 {% block heading %} Site Details - {{ site_name }} {% endblock %}
 
-{% block content %}
+{% block buttons %} {% endblock %}
 
-<table class="table">
-    <thead>
-        <tr>
-            <td><strong>Site</strong></td>
-            <td><strong>A Value</strong></td>
-            <td><strong>B Value</strong></td>
-        </tr>
-    </thead>
+{% block table_body %}
 
-    <tbody>
-        {% for sd in site_details %}
-        <tr>
-            <td>{{sd.detail_date}}</td>
-            <td>{{sd.a_value}}</td>
-            <td>{{sd.b_value}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    {% for sd in site_details %}
+            <tr>
+                <td>{{sd.detail_date}}</td>
+                <td>{{sd.a_value}}</td>
+                <td>{{sd.b_value}}</td>
+            </tr>
+    {% endfor %}
 
 {% endblock %}
